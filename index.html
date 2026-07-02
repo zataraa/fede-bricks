@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#08130d">
+<title>Fede Bricks</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <canvas id="game"></canvas>
+
+  <!-- HUD superior (banner) -->
+  <div id="hud" class="hidden">
+    <div class="hud-row">
+      <div id="hud-stage">Stage 1</div>
+      <div id="hud-stars"><span>★</span><span>★</span><span>★</span></div>
+    </div>
+    <div class="hud-row">
+      <div id="hud-lives"></div>
+      <div id="hud-score-wrap"><span class="score-label">Score</span><span id="hud-score">0</span></div>
+    </div>
+    <button id="btn-pause" aria-label="Pausa"><span></span><span></span></button>
+  </div>
+
+  <!-- Indicador de powerup activo -->
+  <div id="hud-power" class="hidden">
+    <span id="power-letter">E</span>
+    <div id="power-bar"><div id="power-fill"></div></div>
+  </div>
+
+  <!-- Pantalla: título -->
+  <div id="screen-title" class="screen">
+    <h1 class="logo">FEDE<span>BRICKS</span></h1>
+    <p class="tagline">100 niveles · rompe todos los bloques</p>
+    <div class="title-stats">
+      <div class="stars-total">★ <span id="title-stars">0</span> / 300</div>
+      <div class="hiscore">Récord · <span id="title-hiscore">0</span></div>
+    </div>
+    <button id="btn-continue" class="btn primary">Continuar</button>
+    <button id="btn-levels" class="btn">Niveles</button>
+    <button id="btn-new" class="btn">Nueva partida</button>
+    <button id="btn-sound" class="btn">🔊 Sonido · Sí</button>
+  </div>
+
+  <!-- Pantalla: selector de niveles -->
+  <div id="screen-levels" class="screen hidden">
+    <h2>Niveles</h2>
+    <div class="title-stats">
+      <div class="stars-total">★ <span id="levels-stars">0</span> / 300</div>
+      <div class="hiscore">Completados · <span id="levels-done">0</span>/100</div>
+    </div>
+    <div id="levels-grid"></div>
+    <button id="btn-levels-back" class="btn">Volver</button>
+  </div>
+
+  <!-- Confirmación de nueva partida -->
+  <div id="screen-confirm" class="screen hidden">
+    <h2>¿Empezar de cero?</h2>
+    <p class="dim">Se borrará todo tu progreso<br>(niveles, estrellas y récord).</p>
+    <button id="btn-confirm-yes" class="btn danger">Sí, borrar todo</button>
+    <button id="btn-confirm-no" class="btn">Cancelar</button>
+  </div>
+
+  <!-- Overlay de inicio de nivel -->
+  <div id="screen-stage" class="hidden">
+    <div id="stage-text">STAGE 1</div>
+  </div>
+
+  <!-- Pantalla: pausa -->
+  <div id="screen-pause" class="screen hidden">
+    <h2>Pausa</h2>
+    <button id="btn-resume" class="btn primary">Reanudar</button>
+    <button id="btn-restart" class="btn">Reiniciar nivel</button>
+    <button id="btn-sound-pause" class="btn">🔊 Sonido · Sí</button>
+    <button id="btn-pause-menu" class="btn">Menú principal</button>
+  </div>
+
+  <!-- Pantalla: nivel completado -->
+  <div id="screen-complete" class="screen hidden">
+    <h2 id="complete-title">¡Nivel completado!</h2>
+    <div id="complete-stars">
+      <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+    </div>
+    <div class="score-lines">
+      <div>Puntos del nivel · <span id="complete-score">0</span></div>
+      <div>Bonus · <span id="complete-bonus">0</span></div>
+    </div>
+    <button id="btn-next" class="btn primary">Siguiente ▶</button>
+    <button id="btn-complete-levels" class="btn">Niveles</button>
+    <button id="btn-complete-menu" class="btn">Menú</button>
+  </div>
+
+  <!-- Pantalla: game over -->
+  <div id="screen-gameover" class="screen hidden">
+    <h2 class="danger-text">Fin del juego</h2>
+    <div id="gameover-record" class="new-record hidden">¡Nuevo récord!</div>
+    <div class="score-lines">
+      <div>Puntuación · <span id="gameover-score">0</span></div>
+    </div>
+    <button id="btn-retry" class="btn primary">Reintentar nivel</button>
+    <button id="btn-gameover-menu" class="btn">Menú</button>
+  </div>
+</div>
+<script type="module" src="js/main.js?v=3"></script>
+</body>
+</html>
