@@ -2,11 +2,11 @@
 import {
   W, PLAY_TOP, BALL_R, PADDLE_W, START_LIVES, MAX_LIVES, MAX_BALLS,
   POWERUPS, POWERUP_CHANCE, POWERUP_MIN_GAP, POWERUP_MAX_ONSCREEN,
-  LEVEL_BONUS, LIFE_BONUS, PORTAL_BONUS,
+  LEVEL_BONUS, LIFE_BONUS,
   ballSpeedForLevel, RAMP_RATE, RAMP_MAX, PADDLE_ENLARGE,
 } from './config.js';
 import { view, applyTransform } from './view.js';
-import { clamp, rand, roundRect, TAU } from './utils.js';
+import { clamp, rand, TAU } from './utils.js';
 import { Paddle } from './paddle.js';
 import { Ball, makeBallSprite } from './ball.js';
 import { parseLevel, buildBrickSprites, drawBricks } from './bricks.js';
@@ -60,7 +60,6 @@ export class Game {
     this.powerTimer = 0;
     this.powerDur = 1;
     this.laserCd = 0;
-    this.portal = null;       // powerup B
     this.shake = 0;
     this.stageTimer = 0;
     this.lastDrop = -99;
@@ -145,7 +144,6 @@ export class Game {
     this.levelTime = 0;
     this.slowFactor = 1;
     this.shake = 0;
-    this.portal = null;
     this.lastDrop = -99;
     this.clearPaddlePower();
     this.particles.clear();
@@ -275,7 +273,7 @@ export class Game {
       this._autoLaser = (this._autoLaser || 0) - dt;
       if (this._autoLaser <= 0) {
         if (this.lasers.fire(this.paddle)) audio.laser();
-        this._autoLaser = 1.1;
+        this._autoLaser = 0.37; // 3× más rápido: no espera a que el tiro llegue arriba
       }
     }
 
@@ -283,21 +281,11 @@ export class Game {
     this.capsules.update(dt, this);
     this.particles.update(dt);
 
-    // Portal B: el paddle lo toca en el borde derecho → siguiente nivel
-    if (this.portal) {
-      this.portal.t += dt;
-      if (this.paddle.right >= W - 12) {
-        this.particles.burst(W - 10, this.paddle.y, '#ec4899', 22, 240);
-        this.levelComplete(true);
-        return;
-      }
-    }
-
     if (this.shake > 0) this.shake *= Math.exp(-7 * dt);
 
     // ¿Nivel completado?
     if (this.field.destructible <= 0 && (this.state === 'playing')) {
-      this.levelComplete(false);
+      this.levelComplete();
     }
   }
 
@@ -360,8 +348,8 @@ export class Game {
 
   addShake(mag) { this.shake = Math.max(this.shake, mag); }
 
-  levelComplete(viaPortal) {
-    const bonus = LEVEL_BONUS + this.lives * LIFE_BONUS + (viaPortal ? PORTAL_BONUS : 0);
+  levelComplete() {
+    const bonus = LEVEL_BONUS + this.lives * LIFE_BONUS;
     this.addScore(bonus);
     // Estrellas: 3 sin perder vidas, 2 perdiendo una, 1 por completar
     const stars = this.livesLost === 0 ? 3 : this.livesLost === 1 ? 2 : 1;
@@ -397,12 +385,13 @@ export class Game {
         this.lives = Math.min(MAX_LIVES, this.lives + 1);
         this.ui.setLives(this.lives);
         break;
-      case 'D': { // multibola: divide una bola en 3
+      case 'D': { // multibola: completa hasta 3 bolas (no se acumula a 6)
         const src = this.balls.find((b) => !b.stuck) || this.balls[0];
         if (!src) break;
         // si la fuente estaba pegada al paddle, se lanza primero
         if (src.stuck) { src.stuck = false; src.caught = false; src.setAngle(0); }
         const baseAngle = Math.atan2(src.dx, -src.dy);
+        // solo agrega las que falten para llegar a MAX_BALLS (3)
         for (const da of [-0.55, 0.55]) {
           if (this.balls.length >= MAX_BALLS) break;
           const nb = new Ball(src.x, src.y);
@@ -415,9 +404,6 @@ export class Game {
       }
       case 'S': // lenta (recupera gradualmente en update)
         this.slowFactor = 0.55;
-        break;
-      case 'B': // portal de escape en el lado derecho
-        this.portal = { t: 0 };
         break;
       case 'E':
         this.setPaddlePower('E');
@@ -541,22 +527,6 @@ export class Game {
     ctx.stroke();
 
     if (this.state === 'title') return;
-
-    // Portal (powerup B)
-    if (this.portal) {
-      const pulse = 0.6 + 0.4 * Math.sin(this.portal.t * 5);
-      const py = this.paddle.y;
-      const grad = ctx.createLinearGradient(W - 14, 0, W, 0);
-      grad.addColorStop(0, 'rgba(236, 72, 153, 0)');
-      grad.addColorStop(1, `rgba(236, 72, 153, ${0.55 + pulse * 0.4})`);
-      ctx.fillStyle = grad;
-      roundRect(ctx, W - 14, py - 70, 14, 110, 6);
-      ctx.fill();
-      ctx.fillStyle = `rgba(255, 200, 235, ${0.5 + pulse * 0.5})`;
-      roundRect(ctx, W - 6, py - 64, 5, 98, 3);
-      ctx.fill();
-      if (Math.random() < 0.25) this.particles.spark(W - 8, py + rand(-60, 40), '#f9a8d4', 1);
-    }
 
     drawBricks(ctx, this.field);
     this.particles.draw(ctx);

@@ -25,7 +25,7 @@ export const BALL_R = 7;
 export const MAX_BOUNCE_ANGLE = 1.05; // ~60°: rebote máximo en el borde del paddle
 export const MIN_DIR_Y = 0.20;        // anti-loops: nunca casi horizontal
 export const MIN_DIR_X = 0.06;        // anti-loops: nunca casi vertical
-export const MAX_BALLS = 6;
+export const MAX_BALLS = 3;      // la multibola completa hasta 3 (no se acumula)
 
 // Velocidad base por nivel (unidades lógicas / segundo) con tope jugable.
 export function ballSpeedForLevel(n) {
@@ -57,18 +57,16 @@ export const POWERUP_MIN_GAP = 2.0;      // seg. mínimos entre cápsulas
 export const POWERUP_MAX_ONSCREEN = 2;
 export const POWERUP_FALL_SPEED = 105;
 export const POWERUPS = {
-  D: { weight: 24, color: '#22d3ee', dur: 0,  name: 'Multibola' },
-  E: { weight: 20, color: '#3b82f6', dur: 12, name: 'Paddle grande' },
-  S: { weight: 18, color: '#fb923c', dur: 0,  name: 'Lento' },
-  L: { weight: 13, color: '#ef4444', dur: 10, name: 'Láser' },
-  C: { weight: 12, color: '#22c55e', dur: 12, name: 'Imán' },
-  B: { weight: 7,  color: '#ec4899', dur: 0,  name: 'Portal' },
+  D: { weight: 26, color: '#22d3ee', dur: 0,  name: 'Multibola' },
+  E: { weight: 21, color: '#3b82f6', dur: 12, name: 'Paddle grande' },
+  S: { weight: 19, color: '#fb923c', dur: 0,  name: 'Lento' },
+  L: { weight: 14, color: '#ef4444', dur: 10, name: 'Láser' },
+  C: { weight: 13, color: '#22c55e', dur: 12, name: 'Imán' },
   P: { weight: 5,  color: '#e5e7eb', dur: 0,  name: 'Vida extra' },
 };
 
 // --- Puntuación ---
 export const LEVEL_BONUS = 500;
 export const LIFE_BONUS = 150;        // por vida restante al completar
-export const PORTAL_BONUS = 1000;     // por escapar con el portal B
 export const START_LIVES = 3;
 export const MAX_LIVES = 6;
