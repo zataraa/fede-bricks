@@ -5,7 +5,8 @@
 //
 // Curva: 1-10 intro · 11-20 grises 2 · 21-30 grises 3 + X sueltos ·
 // 31-50 barreras · 51-70 fortalezas · 71-90 laberintos · 91-100 final ·
-// 101-120 el Ultramundo (velocidad al tope: la dificultad es la densidad).
+// 101-120 el Ultramundo · 121-140 la Forja y el Abismo
+// (desde el 100 la velocidad está al tope: la dificultad es la densidad).
 
 export const LEVELS = [
 
@@ -1610,6 +1611,291 @@ export const LEVELS = [
 "22222222222",
 "ooooooooooo",
 "22222222222",
+"yyyyyyyyyyy",
+],
+
+// ═══════════ LA FORJA Y EL ABISMO (121-140) ═══════════
+
+// ── 121 · El Yunque ──
+[
+"33333333333",
+".333333333.",
+"...33333...",
+"....333....",
+"...33333...",
+".333333333.",
+"ooooooooooo",
+"ooooooooooo",
+"rrrrrrrrrrr",
+],
+
+// ── 122 · Chispas ──
+[
+"3.3.3.3.3.3",
+".3.3.3.3.3.",
+"3.3.3.3.3.3",
+".3.3.3.3.3.",
+"3.3.3.3.3.3",
+"yyyyyyyyyyy",
+"ooooooooooo",
+"22222222222",
+"rrrrrrrrrrr",
+"rrrrrrrrrrr",
+"yyyyyyyyyyy",
+],
+
+// ── 123 · El Crisol ──
+[
+"33.......33",
+"33.ooooo.33",
+"33ooooooo33",
+"33222222233",
+".333333333.",
+"..3333333..",
+"rrrrrrrrrrr",
+"yyyyyyyyyyy",
+"22222222222",
+],
+
+// ── 124 · Martillos ──
+[
+"3333...3333",
+"3333...3333",
+"..33...33..",
+"..33...33..",
+"..33...33..",
+"22222222222",
+"ooooooooooo",
+"22222222222",
+"rrrrrrrrrrr",
+"yyyyyyyyyyy",
+],
+
+// ── 125 · Lingotes ──
+[
+"222.222.222",
+"333.333.333",
+"222.222.222",
+"333.333.333",
+"yyy.yyy.yyy",
+"ooo.ooo.ooo",
+"rrrrrrrrrrr",
+"rrrrrrrrrrr",
+"ooooooooooo",
+"22222222222",
+],
+
+// ── 126 · La Fragua ──
+[
+"X.X.X.X.X.X",
+"33333333333",
+"3.3.3.3.3.3",
+"33333333333",
+"X.X.X.X.X.X",
+"ooooooooooo",
+"ooooooooooo",
+"22222222222",
+"rrrrrrrrrrr",
+"22222222222",
+],
+
+// ── 127 · Engranajes ──
+[
+"..33...33..",
+".3333.3333.",
+".3223.3223.",
+".3333.3333.",
+"..33...33..",
+"22222222222",
+"22222222222",
+"ooooooooooo",
+"rrrrrrrrrrr",
+"yyyyyyyyyyy",
+],
+
+// ── 128 · Estratos ──
+[
+".3.3.3.3.3.",
+"33333333333",
+"22222222222",
+"33333333333",
+"22222222222",
+"vvvvvvvvvvv",
+"ppppppppppp",
+"rrrrrrrrrrr",
+"ooooooooooo",
+],
+
+// ── 129 · El Horno ──
+[
+"XX.......XX",
+"3.rrrrrrr.3",
+"3.rooooor.3",
+"3.ryyyyyr.3",
+"3.rooooor.3",
+"3.rrrrrrr.3",
+"3.........3",
+"33333333333",
+"33333333333",
+"22222222222",
+"yyyyyyyyyyy",
+],
+
+// ── 130 · El Herrero ──
+[
+"X3X3X3X3X3X",
+"33333333333",
+"32323232323",
+"23232323232",
+"33333333333",
+"X....X....X",
+"rrrrrrrrrrr",
+"22222222222",
+"ooooooooooo",
+"yyyyyyyyyyy",
+],
+
+// ── 131 · Estalactitas ──
+[
+"33333333333",
+"3.333.333.3",
+"3.3.3.3.3.3",
+".3...3...3.",
+"vvvvvvvvvvv",
+"vvvvvvvvvvv",
+"22222222222",
+"22222222222",
+"rrrrrrrrrrr",
+"ooooooooooo",
+],
+
+// ── 132 · Cuevas ──
+[
+"22222222222",
+"33333333333",
+"X.X.X.X.X.X",
+"333.333.333",
+"333.333.333",
+"X.X.X.X.X.X",
+"22222222222",
+"ppppppppppp",
+"ppppppppppp",
+"rrrrrrrrrrr",
+"ooooooooooo",
+],
+
+// ── 133 · Cristales ──
+[
+".3...3...3.",
+"333.333.333",
+".3...3...3.",
+"v3v.v3v.v3v",
+"vvvvvvvvvvv",
+"22222222222",
+"33333333333",
+"ooooooooooo",
+"ooooooooooo",
+"rrrrrrrrrrr",
+"yyyyyyyyyyy",
+],
+
+// ── 134 · El Puente ──
+[
+"33333333333",
+"33333333333",
+"X....X....X",
+"..2..2..2..",
+"..2..2..2..",
+"33333333333",
+"22222222222",
+"rrrrrrrrrrr",
+"rrrrrrrrrrr",
+"ooooooooooo",
+"yyyyyyyyyyy",
+],
+
+// ── 135 · Las Columnas ──
+[
+"33.33.33.33",
+"33.33.33.33",
+"33.33.33.33",
+"33.33.33.33",
+"ooooooooooo",
+"ooooooooooo",
+"22222222222",
+"22222222222",
+"rrrrrrrrrrr",
+],
+
+// ── 136 · Telaraña de acero ──
+[
+"3.3.3.3.3.3",
+".323232323.",
+"3.3.3.3.3.3",
+".323232323.",
+"3.3.3.3.3.3",
+"22222222222",
+"vvvvvvvvvvv",
+"vvvvvvvvvvv",
+"ooooooooooo",
+"rrrrrrrrrrr",
+"yyyyyyyyyyy",
+],
+
+// ── 137 · La Bóveda ──
+[
+"...33333...",
+".333333333.",
+"33322222333",
+"22222222222",
+"33333333333",
+"22222222222",
+"ppppppppppp",
+"rrrrrrrrrrr",
+"ooooooooooo",
+],
+
+// ── 138 · Laberinto ígneo ──
+[
+"X.X.X.X.X.X",
+"3333.333333",
+"2.2.2.2.2.2",
+"333333.3333",
+"2.2.2.2.2.2",
+"3333.333333",
+"X.X.X.X.X.X",
+"rrrrrrrrrrr",
+"rrrrrrrrrrr",
+"ooooooooooo",
+"22222222222",
+"yyyyyyyyyyy",
+],
+
+// ── 139 · Puerta del Abismo ──
+[
+"33X33333X33",
+"33X33333X33",
+"33.33333.33",
+"22.22222.22",
+"22.22222.22",
+"vvvvvvvvvvv",
+"vvvvvvvvvvv",
+"22222222222",
+"rrrrrrrrrrr",
+"ooooooooooo",
+],
+
+// ── 140 · El Coloso ──
+[
+"X333333333X",
+"33333333333",
+"32323232323",
+"23232323232",
+"33333333333",
+"X.X.....X.X",
+"22222222222",
+"rrrrrrrrrrr",
+"ooooooooooo",
 "yyyyyyyyyyy",
 ],
 ];
