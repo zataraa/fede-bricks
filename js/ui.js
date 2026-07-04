@@ -127,7 +127,9 @@ export class UI {
    *  Con devUnlockAll (URL ?dev) se puede saltar a cualquier nivel. */
   renderLevels(save, totalStars, onPick, devUnlockAll = false) {
     $('levels-stars').textContent = totalStars;
+    $('levels-stars-max').textContent = LEVELS.length * 3;
     $('levels-done').textContent = Object.keys(save.stars).length;
+    $('levels-total').textContent = LEVELS.length;
     const grid = $('levels-grid');
     grid.innerHTML = '';
     const frag = document.createDocumentFragment();
@@ -174,6 +176,8 @@ export class UI {
 
   updateTitle(save, totalStars, hasProgress) {
     $('title-stars').textContent = totalStars;
+    $('title-stars-max').textContent = LEVELS.length * 3;
+    $('tagline-count').textContent = LEVELS.length;
     $('title-hiscore').textContent = fmt(save.highScore);
     const btn = $('btn-continue');
     btn.textContent = hasProgress && save.maxLevel > 1 ? `Continuar · Nivel ${save.maxLevel}` : 'Jugar';

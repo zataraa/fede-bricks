@@ -1,4 +1,6 @@
 // ===== Guardado en localStorage =====
+import { LEVELS } from './levels.js';
+
 const KEY = 'neobricks.save.v1';
 
 const defaults = () => ({ maxLevel: 1, stars: {}, highScore: 0 });
@@ -33,7 +35,7 @@ export function totalStars() {
 /** Registra nivel completado: conserva las mejores estrellas y desbloquea el siguiente. */
 export function recordLevelComplete(level, stars) {
   data.stars[level] = Math.max(data.stars[level] || 0, stars);
-  data.maxLevel = Math.min(100, Math.max(data.maxLevel, level + 1));
+  data.maxLevel = Math.min(LEVELS.length, Math.max(data.maxLevel, level + 1));
   persist();
 }
 

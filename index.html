@@ -39,9 +39,9 @@
   <!-- Pantalla: título -->
   <div id="screen-title" class="screen">
     <h1 class="logo">FEDE<span>BRICKS</span></h1>
-    <p class="tagline">100 niveles · rompe todos los bloques</p>
+    <p class="tagline"><span id="tagline-count">100</span> niveles · rompe todos los bloques</p>
     <div class="title-stats">
-      <div class="stars-total">★ <span id="title-stars">0</span> / 300</div>
+      <div class="stars-total">★ <span id="title-stars">0</span> / <span id="title-stars-max">300</span></div>
       <div class="hiscore">Récord · <span id="title-hiscore">0</span></div>
     </div>
     <button id="btn-continue" class="btn primary">Continuar</button>
@@ -54,8 +54,8 @@
   <div id="screen-levels" class="screen hidden">
     <h2>Niveles</h2>
     <div class="title-stats">
-      <div class="stars-total">★ <span id="levels-stars">0</span> / 300</div>
-      <div class="hiscore">Completados · <span id="levels-done">0</span>/100</div>
+      <div class="stars-total">★ <span id="levels-stars">0</span> / <span id="levels-stars-max">300</span></div>
+      <div class="hiscore">Completados · <span id="levels-done">0</span>/<span id="levels-total">100</span></div>
     </div>
     <div id="levels-grid"></div>
     <button id="btn-levels-back" class="btn">Volver</button>

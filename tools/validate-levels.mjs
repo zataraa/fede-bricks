@@ -73,12 +73,11 @@ LEVELS.forEach((map, i) => {
   summary.push({ n, destructible, hits, metal, rows: map.length });
 });
 
-console.log(`\nNiveles: ${LEVELS.length} (esperados 100)`);
-if (LEVELS.length !== 100) errors++;
+console.log(`\nNiveles: ${LEVELS.length}`);
 
 // Curva de dificultad: golpes necesarios por decena
 console.log('\nGolpes promedio por decena:');
-for (let d = 0; d < 10; d++) {
+for (let d = 0; d < Math.ceil(LEVELS.length / 10); d++) {
   const slice = summary.slice(d * 10, d * 10 + 10);
   if (!slice.length) continue;
   const avgHits = (slice.reduce((a, s) => a + s.hits, 0) / slice.length).toFixed(0);
